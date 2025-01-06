@@ -2,7 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <cmath>
-// #include <algorithm>
+#include <algorithm>
 #include <limits>
 #include <climits>
 #include <variant>
@@ -21,8 +21,6 @@ int main()
     ModularArithmetic math215 = ModularArithmetic(3, 2);
     std::cout << math215 << std::endl;
 
-    std::cout << "22323" << std::endl;
-
     ModularArithmetic math230 = math214 + math215;
     std::cout << math230 << std::endl;
     ModularArithmetic math260 = math214 - math215;
@@ -31,8 +29,6 @@ int main()
     std::cout << math270 << std::endl;
     ModularArithmetic math280 = math214 / math215;
     std::cout << math280 << std::endl;
-
-    std::cout << "22323" << std::endl;
 
     math230 += 2;
     std::cout << math230 << std::endl;
@@ -67,5 +63,6 @@ int main()
     std::cout << GCD(15, 4) << std::endl;
     std::cout << LCM(15, 4) << std::endl;
     std::cout << modulo(-8, 10) << std::endl;
+
     return 0;
 }

@@ -76,8 +76,4 @@ class ModularArithmetic
 };
 
 
-// std::ostream& operator<<(std::ostream& os, const ModularArithmetic& obj);
-// ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmetic& op2);
-// ModularArithmetic operator-(const ModularArithmetic& op1, const ModularArithmetic& op2);
-
 #endif

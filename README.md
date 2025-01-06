@@ -123,7 +123,7 @@ std::cout << ~math250 << std::endl;
 
 ___
 
-## All of the comparison operators are also included:
+## All of the comparison operators are also included, which compare only the result of the modular expression, not the Value or Modulus:
 std::cout << (~math250 == math230) << std::endl;
 ### 0
 std::cout << (~math250 == ModularArithmetic(5, 1000)) << std::endl;
