@@ -78,7 +78,7 @@ ___
 
 ## The unary +, -, and ~ operators:
 
-## + and - do as you would expect to the value, not the modulus, but the ~ does something more interesting: it calculates the multiplicative
+## + and - do as you would expect to the value, not the modulus, but the ~ does something more interesting: it calculates the multiplicative inverse of P mod(N)
 
 std::cout << +math230 << std::endl;
 
