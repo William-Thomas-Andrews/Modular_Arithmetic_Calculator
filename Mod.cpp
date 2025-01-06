@@ -96,7 +96,6 @@ ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmeti
     if (op1.modulus == 0 || op2.modulus == 0)
     {
         throw std::invalid_argument("Cannot add 'Undefined'");
-        return ModularArithmetic(0, 1);
     }
     else if (op1.modulus == op2.modulus) // if the moduli are equal; the normal case
     {
@@ -105,7 +104,7 @@ ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmeti
     }
     else if (op1.modulus != op2.modulus)
     {
-        int new_modulus = std::lcm(op1.modulus, op2.modulus);
+        int new_modulus = LCM(op1.modulus, op2.modulus);
         int new_op1 = (new_modulus / op1.modulus) * op1.value;
         int new_op2 = (new_modulus / op2.modulus) * op2.value;
         int new_op = new_op1 + new_op2;
@@ -128,7 +127,7 @@ ModularArithmetic operator-(const ModularArithmetic& op1, const ModularArithmeti
     }
     else if (op1.modulus != op2.modulus)
     {
-        int new_modulus = std::lcm(op1.modulus, op2.modulus);
+        int new_modulus = LCM(op1.modulus, op2.modulus);
         int new_op1 = (new_modulus / op1.modulus) * op1.value;
         int new_op2 = (new_modulus / op2.modulus) * op2.value;
         int new_op = new_op1 - new_op2;
@@ -136,15 +135,73 @@ ModularArithmetic operator-(const ModularArithmetic& op1, const ModularArithmeti
     }
 }
 
+ModularArithmetic operator*(const ModularArithmetic& op1, const ModularArithmetic& op2)
+{
+    if (op1.modulus == 0 || op2.modulus == 0)
+    {
+        throw std::invalid_argument("Cannot add 'Undefined'");
+    }
+    else if (op1.modulus == op2.modulus) // if the moduli are equal; the normal case
+    {
+        ModularArithmetic temp = ModularArithmetic((op1.value+op2.value), op1.modulus);
+        return temp;
+    }
+    else if (op1.modulus != op2.modulus)
+    {
+        int new_modulus = LCM(op1.modulus, op2.modulus);
+        int new_op1 = (new_modulus / op1.modulus) * op1.value;
+        int new_op2 = (new_modulus / op2.modulus) * op2.value;
+        int new_op = new_op1 * new_op2;
+        return ModularArithmetic(new_op, new_modulus);
+    }
+}
+
+
+ModularArithmetic operator/(const ModularArithmetic& op1, const ModularArithmetic& op2)
+{
+    if (op1.modulus == 0 || op2.modulus == 0)
+    {
+        throw std::invalid_argument("Cannot add 'Undefined'");
+    }
+    else if (op1.modulus == op2.modulus) // if the moduli are equal; the normal case
+    {
+        ModularArithmetic temp = ModularArithmetic((op1.value+op2.value), op1.modulus);
+        return temp;
+    }
+    else if (op1.modulus != op2.modulus)
+    {
+        int new_modulus = LCM(op1.modulus, op2.modulus);
+        int new_op1 = (new_modulus / op1.modulus) * op1.value;
+        int new_op2 = (new_modulus / op2.modulus) * op2.value;
+        int new_op = new_op1 / new_op2;
+        return ModularArithmetic(new_op, new_modulus);
+    }
+}
+
+
+bool operator==(const ModularArithmetic& op1, const ModularArithmetic& op2)
+{
+    if (op1.result == op2.result)
+    {
+        return true;
+    }
+    return false;
+}
+
+
+std::strong_ordering operator<=>(const ModularArithmetic& op1, const ModularArithmetic& op2)
+{
+    return op1.result <=> op2.result;
+}
+
 
 int modulo(int a, int b) // A more mathematical modulo operation
 {
     if (a < 0)
     {
-        // return (a%b) + b;
         return (a - (b * std::floor(a/b))) + b;
     }
-    else return (a - (b * std::floor(a/b)));
+    return (a - (b * std::floor(a/b)));
 }
 
 

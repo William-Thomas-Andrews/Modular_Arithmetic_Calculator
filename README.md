@@ -14,7 +14,7 @@ std::cout << math214 << std::endl;
 
 # The operators that have been overloaded are:
 
-## The +, - and << operators:
+## The +, -, *, / and << operators:
 ModularArithmetic math215 = ModularArithmetic(3, 2);
 
 ModularArithmetic math230 = math214 + math215;
@@ -22,6 +22,24 @@ ModularArithmetic math230 = math214 + math215;
 std::cout << math230 << std::endl;
 
 ### 39 mod(10) ≡ 9
+
+ModularArithmetic math260 = math214 - math215;
+
+std::cout << math260 << std::endl;
+
+### 9 mod(10) ≡ 9
+
+ModularArithmetic math270 = math214 * math215;
+
+std::cout << math270 << std::endl;
+
+### 360 mod(10) ≡ 0
+
+ModularArithmetic math280 = math214 / math215;
+
+std::cout << math280 << std::endl;
+    
+### 1 mod(10) ≡ 1
 
 #### When moduli don't match, we use the Least Common Multiple to put both expressions in the same terms of 
 #### modulus, then we add them together.
@@ -102,6 +120,22 @@ ModularArithmetic math250 = ModularArithmetic(17, 6);
 std::cout << ~math250 << std::endl;
 
 ### 5 mod(6) ≡ 5
+
+___
+
+## All of the comparison operators are also included:
+std::cout << (~math250 == math230) << std::endl;
+### 0
+std::cout << (~math250 == ModularArithmetic(5, 1000)) << std::endl;
+### 1
+std::cout << (~math250 <= ModularArithmetic(5, 1000)) << std::endl;
+### 1
+std::cout << (~math250 < ModularArithmetic(5, 1000)) << std::endl;
+### 0
+std::cout << (~math250 > ModularArithmetic(5, 1000)) << std::endl;
+### 0
+std::cout << (~math250 >= ModularArithmetic(323423, 1000)) << std::endl;
+### 0
 
 ___
 

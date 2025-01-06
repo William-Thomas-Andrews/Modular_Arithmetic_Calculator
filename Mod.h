@@ -29,10 +29,10 @@ class ModularArithmetic
 {
     private:
         std::variant<int, std::string> result;
+        int value;
+        int modulus;
 
     public:
-        int value; /// change to private
-        int modulus;
 
         // Constructors
         ModularArithmetic(int mod);
@@ -48,6 +48,13 @@ class ModularArithmetic
         friend std::ostream& operator<<(std::ostream& os, const ModularArithmetic& obj);
         friend ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmetic& op2);
         friend ModularArithmetic operator-(const ModularArithmetic& op1, const ModularArithmetic& op2);
+        friend ModularArithmetic operator*(const ModularArithmetic& op1, const ModularArithmetic& op2);
+        friend ModularArithmetic operator/(const ModularArithmetic& op1, const ModularArithmetic& op2);
+
+        // Friend Comparison Operators
+        friend bool operator==(const ModularArithmetic& op1, const ModularArithmetic& op2);
+        friend std::strong_ordering operator<=>(const ModularArithmetic& op1, const ModularArithmetic& op2);
+        
 
         // Arithmetic Operators
         void operator+=(int n);
@@ -67,6 +74,7 @@ class ModularArithmetic
         // Destructor
         ~ModularArithmetic();
 };
+
 
 // std::ostream& operator<<(std::ostream& os, const ModularArithmetic& obj);
 // ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmetic& op2);

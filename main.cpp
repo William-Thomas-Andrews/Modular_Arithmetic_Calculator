@@ -21,8 +21,18 @@ int main()
     ModularArithmetic math215 = ModularArithmetic(3, 2);
     std::cout << math215 << std::endl;
 
+    std::cout << "22323" << std::endl;
+
     ModularArithmetic math230 = math214 + math215;
     std::cout << math230 << std::endl;
+    ModularArithmetic math260 = math214 - math215;
+    std::cout << math260 << std::endl;
+    ModularArithmetic math270 = math214 * math215;
+    std::cout << math270 << std::endl;
+    ModularArithmetic math280 = math214 / math215;
+    std::cout << math280 << std::endl;
+
+    std::cout << "22323" << std::endl;
 
     math230 += 2;
     std::cout << math230 << std::endl;
@@ -46,6 +56,13 @@ int main()
     ModularArithmetic math250 = ModularArithmetic(17, 6);
     std::cout << ~math250 << std::endl;
 
+    std::cout << (~math250 == math230) << std::endl;
+    std::cout << (~math250 == ModularArithmetic(5, 1000)) << std::endl;
+
+    std::cout << (~math250 <= ModularArithmetic(5, 1000)) << std::endl;
+    std::cout << (~math250 < ModularArithmetic(5, 1000)) << std::endl;
+    std::cout << (~math250 > ModularArithmetic(5, 1000)) << std::endl;
+    std::cout << (~math250 >= ModularArithmetic(323423, 1000)) << std::endl;
     
     std::cout << GCD(15, 4) << std::endl;
     std::cout << LCM(15, 4) << std::endl;
