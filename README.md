@@ -1,4 +1,4 @@
-# Modulus Calculator
+# Modular Arithmetic Calculator
 
 This is a calculator program that takes in two arguments V (value) and M (modulus), in the mathematical formula: V mod(M) ≡ Result. The result is calculated by the class itself. 
 
