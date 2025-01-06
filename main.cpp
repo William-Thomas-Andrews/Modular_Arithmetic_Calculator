@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <cmath>
+// #include <algorithm>
+#include <limits>
+#include <climits>
+#include <variant>
+#include <string>
+#include <algorithm>
+#include <map>
+#include <memory>
+#include <numeric>
+#include "Mod.h"
+
+int main()
+{
+    ModularArithmetic math214 = ModularArithmetic(12, 5);
+    std::cout << math214 << std::endl;
+
+    ModularArithmetic math215 = ModularArithmetic(3, 2);
+    std::cout << math215 << std::endl;
+
+    ModularArithmetic math230 = math214 + math215;
+    std::cout << math230 << std::endl;
+
+    math230 += 2;
+    std::cout << math230 << std::endl;
+    math230 -= 13;
+    std::cout << math230 << std::endl;
+    
+    
+    math230 *= 3;
+    std::cout << math230 << std::endl;
+    math230 /= 10;
+    std::cout << math230 << std::endl;
+
+    math230++;
+    std::cout << math230 << std::endl;
+    math230--;
+    std::cout << math230 << std::endl;
+
+    std::cout << +math230 << std::endl;
+    std::cout << -math230 << std::endl;
+    // std::cout << ~math230 << std::endl;
+    ModularArithmetic math250 = ModularArithmetic(17, 6);
+    std::cout << ~math250 << std::endl;
+
+    
+    std::cout << GCD(15, 4) << std::endl;
+    std::cout << LCM(15, 4) << std::endl;
+    std::cout << modulo(-8, 10) << std::endl;
+    return 0;
+}

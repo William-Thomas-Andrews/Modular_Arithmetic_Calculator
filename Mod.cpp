@@ -1,3 +1,4 @@
+#include "Mod.h"
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -13,114 +14,71 @@
 #include <numeric>
 
 
+int GCD(int m, int v) // m represents modulus and v represents value, but arbitrary numbers a and b work fine too.
+    {
+        if (m == 0 && v != 0)
+        {
+            return v;
+        }
+        if (m != 0 && v == 0)
+        {
+            return m;
+        }
+        if (m == 0 && v == 0)
+        {
+            return 0;
+        }
+        int mod = m;
+        int val = v;
+        int rem = std::min(m, v);
+        int prev_rem = 0;
+        do
+        {
+            prev_rem = rem;
+            rem = mod - ((mod / val) * val);
+            mod = val;
+            val = rem;
+        } while (rem != 0);
 
-class ModularArithmetic
+        return prev_rem;
+    }
+
+int LCM(int a, int b)
 {
-    private:
-        std::variant<int, std::string> result;
+    return ((a * b) / (GCD(a, b)));
+}
 
-    public:
-        int value;
-        int modulus;
-        ModularArithmetic(int mod) : value(0), modulus(mod), result(mod==0 ? std::variant<int, std::string>("Undefined") : 0) {}
-        ModularArithmetic(int val, int mod) : value(val), modulus(mod), result(mod==0 ? std::variant<int, std::string>("Undefined") : val%mod) {}
-        ModularArithmetic(const ModularArithmetic& t) 
-        {
-            value = t.value;
-            modulus = t.modulus;
-            result = t.result;
-            std::cout << "Copy Constructor Called" << std::endl;
-        }
-        ModularArithmetic& operator=(const ModularArithmetic& a)
-        {
-            value = a.value;
-            modulus = a.modulus;
-            result = a.result;
-            std::cout << "Copy Assingment Initiated" << std::endl;
-            return *this;
-        }
-        friend std::ostream& operator<<(std::ostream& os, const ModularArithmetic& obj);
-        friend ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmetic& op2);
-        
-        void operator+=(int n)
-        {
-            value += n;
-            result = value%modulus;
-        }
-        void operator-=(int n)
-        {
-            value -= n;
-            result = value%modulus;
-        }
-        void operator*=(int n)
-        {
-            value *= n;
-            result = value%modulus;
-        }
-        void operator/=(int n)
-        {
-            value /= n;
-            result = value%modulus;
-        }
-        void operator++(int n)
-        {
-            value += 1;
-            result = value%modulus;
-        }
-        void operator--(int n)
-        {
-            value -= 1;
-            result = value%modulus;
-        }
-        ModularArithmetic operator+() //unary +
-        {
-            value *= +1;
-            return *this;
-        }
-        ModularArithmetic operator-() //unary -
-        {
-            value *= -1;
-            return *this;
-        }
-        // int recExtended(int a, int b)
-        // {
 
-        // }
-        // int extendedEuclideanAlgorithm()
-        // {
-        //     int mod = modulus;
-        //     int val = value;
-        //     int rem;
-        //     std::map<int, int> mp {};
-        //     do
-        //     {
-        //         rem = mod - ((mod / val) * val);
-        //         mod = val;
-        //         val = rem;
-        //     } while (rem != 1);
-            
-        //     return ;
-        // }
-        ModularArithmetic operator~() //Modulus complement ~ 
-        {
-            int gcd = std::gcd(value, modulus);
-            if (gcd != 1)
-            {
-                throw std::invalid_argument("GCD ≠ 1, so there is no multiplicative inverse.");
-            }
-            else
-            {
-                for (int i = 1; i <= modulus; i++)
-                {
-                    if (((i * value) % modulus) == 1)
-                    {
-                        return ModularArithmetic(i, modulus);
-                    }
-                }
-            }
-        }
-        ~ModularArithmetic() = default;
-};
+
+// Constructor
+ModularArithmetic::ModularArithmetic(int mod) : value(0), modulus(mod), result(mod==0 ? std::variant<int, std::string>("Undefined") : 0) {}
+
+// Constructor 
+ModularArithmetic::ModularArithmetic(int val, int mod) : value(val), modulus(mod), result(mod==0 ? std::variant<int, std::string>("Undefined") : modulo(val, mod)) {}
+
+// Copy Constructor
+ModularArithmetic::ModularArithmetic(const ModularArithmetic& t) 
+{
+    value = t.value;
+    modulus = t.modulus;
+    result = t.result;
+    std::cout << "Copy Constructor Called" << std::endl;
+}
+
+ModularArithmetic& ModularArithmetic::operator=(const ModularArithmetic& a)
+{
+    if (this != &a)
+    {
+        value = a.value;
+        modulus = a.modulus;
+        result = a.result;
+        // std::cout << "Copy Assingment Initiated" << std::endl;
+    }
+    return *this;
+}
+
+
+
 
 
 std::ostream& operator<<(std::ostream& os, const ModularArithmetic& obj)
@@ -138,6 +96,7 @@ ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmeti
     if (op1.modulus == 0 || op2.modulus == 0)
     {
         throw std::invalid_argument("Cannot add 'Undefined'");
+        return ModularArithmetic(0, 1);
     }
     else if (op1.modulus == op2.modulus) // if the moduli are equal; the normal case
     {
@@ -153,6 +112,7 @@ ModularArithmetic operator+(const ModularArithmetic& op1, const ModularArithmeti
         ModularArithmetic temp = ModularArithmetic(new_op, new_modulus);
         return temp;
     }
+    return ModularArithmetic(0, 1);
 }
 
 ModularArithmetic operator-(const ModularArithmetic& op1, const ModularArithmetic& op2)
@@ -171,39 +131,78 @@ ModularArithmetic operator-(const ModularArithmetic& op1, const ModularArithmeti
         int new_modulus = std::lcm(op1.modulus, op2.modulus);
         int new_op1 = (new_modulus / op1.modulus) * op1.value;
         int new_op2 = (new_modulus / op2.modulus) * op2.value;
-        int new_op = new_op1 + new_op2;
-        ModularArithmetic temp = ModularArithmetic(new_op, new_modulus);
-        return temp;
+        int new_op = new_op1 - new_op2;
+        return ModularArithmetic(new_op, new_modulus);
     }
 }
 
 
-
-int main()
+int modulo(int a, int b) // A more mathematical modulo operation
 {
-    // ModularArithmetic math214 = ModularArithmetic(43, 8);
-    // std::cout << math214 << std::endl;
-    // ModularArithmetic math215 = math214;
-    // std::cout << math215 << std::endl;
-    // ModularArithmetic math216 = ModularArithmetic(43, 8000);
-    // std::cout << math216 << std::endl;
-    // math214 = math216;
-    // std::cout << math214 << std::endl;
-    // math214 += 2;
-    // std::cout << math214 << std::endl;
-    // math214 -= 13;
-    // std::cout << math214 << std::endl;
-    ModularArithmetic math214 = ModularArithmetic(12, 5);
-    std::cout << math214 << std::endl;
-    ModularArithmetic math215 = ModularArithmetic(3, 2);
-    std::cout << math215 << std::endl;
-    ModularArithmetic math2000 = math214 + math215;
-    std::cout << math2000 << std::endl;
-    ModularArithmetic math241 = ModularArithmetic(3, 1);
-    std::cout << math241 << std::endl;
-    math241 = -math241;
-    std::cout << math241 << std::endl;
-    std::cout << ~math214 << std::endl;
-    // std::cout << math214 + math241 << std::endl;
-    return 0;
+    if (a < 0)
+    {
+        // return (a%b) + b;
+        return (a - (b * std::floor(a/b))) + b;
+    }
+    else return (a - (b * std::floor(a/b)));
 }
+
+
+void ModularArithmetic::operator+=(int n)
+{
+    value += n;
+    result = modulo(value, modulus);
+}
+void ModularArithmetic::operator-=(int n)
+{
+    value -= n;
+    result = modulo(value, modulus);
+}
+void ModularArithmetic::operator*=(int n)
+{
+    value *= n;
+    result = modulo(value, modulus);
+}
+void ModularArithmetic::operator/=(int n)
+{
+    value /= n;
+    result = modulo(value, modulus);
+}
+void ModularArithmetic::operator++(int n)
+{
+    value += 1;
+    result = modulo(value, modulus);
+}
+void ModularArithmetic::operator--(int n)
+{
+    value -= 1;
+    result = modulo(value, modulus);
+}
+ModularArithmetic ModularArithmetic::operator+() //unary +
+{
+    return ModularArithmetic(value, modulus);
+}
+ModularArithmetic ModularArithmetic::operator-() //unary -
+{
+    return ModularArithmetic((-value), modulus);
+}
+ModularArithmetic ModularArithmetic::operator~() // Modulus complement ~ 
+{
+    // int gcd = std::gcd(value, modulus);
+    int gcd = GCD(value, modulus);
+    if (gcd != 1)
+    {
+        throw std::invalid_argument("GCD ≠ 1, so there is no multiplicative inverse.");
+    }
+    else
+    {
+        for (int i = 1; i <= modulus; i++)
+        {
+            if ((modulo((i * value), modulus)) == 1)
+            {
+                return ModularArithmetic(i, modulus);
+            }
+        }
+    }
+}
+ModularArithmetic::~ModularArithmetic() = default;
