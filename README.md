@@ -14,8 +14,7 @@ std::cout << math214 << std::endl;
 - ### Object-oriented design: 
 A ModularArithmetic class that automatically calculates results from (value, modulus) pairs.
 
-- ### Operator overloading:
-Supports:
+- ### Operator overloading; supports:
 
 - Arithmetic operators: +, -, *, /
 
@@ -54,6 +53,7 @@ cd scripts/
 ./configure.sh
 ./build.sh
 ./run.sh
+```
 
 ---
 
