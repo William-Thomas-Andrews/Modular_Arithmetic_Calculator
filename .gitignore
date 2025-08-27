@@ -45,3 +45,6 @@ Makefile
 *.tmp
 *.swp
 *.swo
+
+# ---- VisualStudio Code ----
+.vscode
