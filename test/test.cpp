@@ -1,20 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <cmath>
-#include <algorithm>
-#include <limits>
-#include <climits>
-#include <variant>
-#include <string>
-#include <algorithm>
-#include <map>
-#include <memory>
-#include <numeric>
-#include "Mod.h"
+#include "Mod.hpp"
 
-int main()
-{
+int main() {
     ModularArithmetic math214 = ModularArithmetic(12, 5);
     std::cout << math214 << std::endl;
 

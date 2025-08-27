@@ -1,19 +1,7 @@
-#ifndef MOD_H
-#define MOD_H
+#pragma once
 
 #include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <cmath>
-#include <algorithm>
-#include <limits>
-#include <climits>
 #include <variant>
-#include <string>
-#include <algorithm>
-#include <map>
-#include <memory>
-#include <numeric>
 
 
 // The standard GCD(a, b)
@@ -25,8 +13,7 @@ int LCM(int a, int b);
 // Modulo Function - standard % but now works for negative values
 int modulo(int a, int b);
 
-class ModularArithmetic
-{
+class ModularArithmetic {
     private:
         std::variant<int, std::string> result;
         int value;
@@ -74,6 +61,3 @@ class ModularArithmetic
         // Destructor
         ~ModularArithmetic();
 };
-
-
-#endif
