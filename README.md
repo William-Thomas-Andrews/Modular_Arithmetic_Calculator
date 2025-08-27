@@ -164,7 +164,7 @@ ModularArithmetic math250 = ModularArithmetic(17, 6);
 std::cout << ~math250 << std::endl;
 
 ### 5 mod(6) ≡ 5
-
+ 
 ___
 
 ## All of the comparison operators are also included, which compare only the result of the modular expression, not the Value or Modulus:
