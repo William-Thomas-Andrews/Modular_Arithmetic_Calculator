@@ -10,6 +10,51 @@ std::cout << math214 << std::endl;
 
 ### 12 mod(5) ≡ 2
 
+## Features
+- ### Object-oriented design: 
+A ModularArithmetic class that automatically calculates results from (value, modulus) pairs.
+
+- ### Operator overloading:
+Supports:
+
+- Arithmetic operators: +, -, *, /
+
+- Compound operators: +=, -=, *=, /=
+
+- Increment/decrement: ++, --
+
+- Unary operators: +, -, and ~ (modular inverse)
+
+- Comparison operators: ==, <, <=, >, >=, <=>
+
+- Stream output: <<
+
+- ### Automatic LCM handling:
+If two modular expressions have different moduli, the calculator converts them into a common modulus using the least common multiple.
+
+- ### Mathematical helpers:
+Includes standalone GCD, LCM, and modulo functions.
+
+- ### Error safety:
+Throws exceptions (e.g., when attempting to compute a modular inverse when GCD(value, modulus) ≠ 1).
+
+
+## Requirements
+- C++20 or later  
+- CMake (for build system)  
+
+## Installation
+```bash
+# Clone the repository
+git clone https://github.com/William-Thomas-Andrews/Modular_Arithmetic_Calculator.git
+cd Modular_Arithmetic_Calculator
+
+# Build
+cd scripts/
+./configure.sh
+./build.sh
+./run.sh
+
 ---
 
 # The operators that have been overloaded are:
