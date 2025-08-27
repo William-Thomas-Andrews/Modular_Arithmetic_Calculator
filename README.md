@@ -155,7 +155,6 @@ std::cout << ~math230 << std::endl;
 
 ### libc++abi: terminating due to uncaught exception of type 
 ### std::invalid_argument: GCD ≠ 1, so there is no multiplicative inverse.
-### zsh: abort      ./a.out
 
 #### As per the rules of modular inverses, there is no multiplicative inverse for two numbers in a modular 
 #### expression whose GCD ≠ 1
