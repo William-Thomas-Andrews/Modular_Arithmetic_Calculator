@@ -57,7 +57,7 @@ cd scripts/
 
 ---
 
-# The operators that have been overloaded are:
+# Examples:
 
 ## The +, -, *, / and << operators:
 ModularArithmetic math215 = ModularArithmetic(3, 2);
