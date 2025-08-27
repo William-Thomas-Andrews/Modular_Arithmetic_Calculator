@@ -42,7 +42,7 @@ Throws exceptions (e.g., when attempting to compute a modular inverse when GCD(v
 - C++20 or later  
 - CMake (for build system)  
 
-## Installation
+## Installation and running the program
 ```bash
 # Clone the repository
 git clone https://github.com/William-Thomas-Andrews/Modular_Arithmetic_Calculator.git
